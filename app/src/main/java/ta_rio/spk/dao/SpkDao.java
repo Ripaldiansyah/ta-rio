@@ -35,6 +35,7 @@ public class SpkDao implements SpkService {
             rs = stat.executeQuery();
             while (rs.next()) {
                 SpkModel history = new SpkModel();
+                history.setSpkId(rs.getString("spk_id"));
                 history.setSpkName(rs.getString("spk_name"));
                 history.setCreatedAt(rs.getString("created_at"));
                 historyList.add(history);

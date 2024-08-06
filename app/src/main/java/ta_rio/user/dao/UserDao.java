@@ -117,12 +117,13 @@ public class UserDao implements UserService {
         boolean bbb = false;
         try {
             Statement statement = conn.createStatement();
-            String query = "SELECT hi FROM ha";
+            String query = "SELECT hi FROM hasil_topsis";
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 bbb = true;
             }
         } catch (Exception e) {
+            bbb = true;
             e.printStackTrace();
         }
         return bbb;
