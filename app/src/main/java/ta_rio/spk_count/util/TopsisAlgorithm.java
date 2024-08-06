@@ -13,6 +13,7 @@ import ta_rio.spk_count.model.SPKCountModel;
 import ta_rio.spk_count.view.SPKCountView;
 import ta_rio.spk_result.controller.SpkResultController;
 import ta_rio.spk_result.model.SpkResultModel;
+import ta_rio.user.dao.UserDao;
 
 public class TopsisAlgorithm {
 
@@ -60,6 +61,9 @@ public class TopsisAlgorithm {
 
     // proses ke-3 Topsis
     void decisionNormalizationAndWeightedMatrix() {
+        if (!validasi()) {
+            return;
+        }
         for (Map<Object, Object> data : dataCompile) {
             Map<Object, Object> normalAndWeight = new LinkedHashMap<>();
             int index = 0;
@@ -75,6 +79,12 @@ public class TopsisAlgorithm {
             normalAndWeightList.add(normalAndWeight);
         }
         updateCombine(normalAndWeightList);
+    }
+
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
     }
 
     // proses topsis ke-4

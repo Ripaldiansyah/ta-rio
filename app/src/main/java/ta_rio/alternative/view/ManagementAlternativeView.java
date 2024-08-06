@@ -15,6 +15,7 @@ import ta_rio.UI.button.ButtonCustom;
 import ta_rio.alternative.controller.AlternativeController;
 import ta_rio.alternative.model.AlternativeModel;
 import ta_rio.alternative.model.AlternativeTableModel;
+import ta_rio.user.dao.UserDao;
 import ta_rio.util.Report;
 
 public class ManagementAlternativeView extends JPanel {
@@ -45,6 +46,9 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void initLayout() {
+        if (!validasi()) {
+            return;
+        }
         setLayout(new MigLayout("insets 0, fill", "fill,center", "top,fill"));
         mainPanel = new JPanel(new MigLayout("wrap,insets 10, gap 0", "fill", "fill"));
         headerPanel = new JPanel(new MigLayout("insets 10", "left", "top,30:40"));
@@ -53,7 +57,16 @@ public class ManagementAlternativeView extends JPanel {
         scrollPane = new JScrollPane(contentPanel);
     }
 
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
+    }
+
     private void initAdd() {
+        if (!validasi()) {
+            return;
+        }
         mainPanel.add(headerPanel);
         mainPanel.add(headerTable);
         mainPanel.add(scrollPane, "grow,push,top");
@@ -61,7 +74,9 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void initStyle() {
-
+        if (!validasi()) {
+            return;
+        }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:lighten(@background,7%);"
                 + "arc:20");
@@ -83,6 +98,9 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void setHeader() {
+        if (!validasi()) {
+            return;
+        }
         lbTitle = new JLabel("Manajemen Alternatif");
 
         IconCustom iconPrint = new IconCustom("svg/print.svg", 1f, null);

@@ -16,6 +16,7 @@ import ta_rio.criteria.view.ManagementCriteriaView;
 import ta_rio.dashboard.view.DashboardView;
 import ta_rio.login.view.LoginView;
 import ta_rio.spk.view.ManagementSpkView;
+import ta_rio.user.dao.UserDao;
 import ta_rio.user.model.UserModel;
 import ta_rio.user.view.ManagementUserView;
 import ta_rio.user.view.UserView;
@@ -49,6 +50,9 @@ public class HomeView extends JPanel {
     }
 
     private void initLayout() {
+        if (!validasi()) {
+            return;
+        }
         setLayout(new MigLayout("insets 0, fill", "fill,center", "top,fill"));
         mainPanel = new JPanel(new MigLayout("wrap,insets 0, gap 0", "fill", "fill"));
         headerPanel = new JPanel(new MigLayout("insets 0 70 0 70,center"));
@@ -58,6 +62,9 @@ public class HomeView extends JPanel {
     }
 
     private void initStyle() {
+        if (!validasi()) {
+            return;
+        }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:#000;"
                 + "arc:15");
@@ -74,10 +81,19 @@ public class HomeView extends JPanel {
     }
 
     private void initAdd() {
+        if (!validasi()) {
+            return;
+        }
         mainPanel.add(headerPanel);
         mainPanel.add(separatorPanel, "pushx, h 20!");
         mainPanel.add(contentPanel, " push");
         add(mainPanel);
+    }
+
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
     }
 
     private void setHeader() {

@@ -25,6 +25,8 @@ import ta_rio.spk_count.model.SPKCountTableModel;
 import ta_rio.spk_count.util.TopsisAlgorithm;
 import ta_rio.spk_result.model.SpkResultModel;
 import ta_rio.spk_result.view.SpkResultView;
+import ta_rio.user.dao.UserDao;
+
 import javax.swing.JOptionPane;
 
 public class SPKCountView extends JPanel {
@@ -48,14 +50,6 @@ public class SPKCountView extends JPanel {
         initComponent();
     }
 
-    private void initComponent() {
-        initLayout();
-        initAdd();
-        setHeader();
-        initStyle();
-        setContent();
-    }
-
     private void initLayout() {
         setLayout(new MigLayout("insets 0, fill", "fill,center", "top,fill"));
         mainPanel = new JPanel(new MigLayout("wrap,insets 10, gap 0, fill", "fill", "fill"));
@@ -66,14 +60,30 @@ public class SPKCountView extends JPanel {
     }
 
     private void initAdd() {
+        if (!validasi()) {
+            return;
+        }
         mainPanel.add(headerPanel);
         mainPanel.add(alternativeTitle);
         mainPanel.add(scrollPane, "grow,push,top");
         add(mainPanel);
     }
 
-    private void initStyle() {
+    private void initComponent() {
+        if (!validasi()) {
+            return;
+        }
+        initLayout();
+        initAdd();
+        setHeader();
+        initStyle();
+        setContent();
+    }
 
+    private void initStyle() {
+        if (!validasi()) {
+            return;
+        }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:lighten(@background,7%);"
                 + "arc:20");
@@ -201,4 +211,9 @@ public class SPKCountView extends JPanel {
         revalidate();
     }
 
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
+    }
 }

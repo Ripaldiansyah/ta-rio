@@ -13,6 +13,7 @@ import ta_rio.spk.view.ManagementSpkView;
 import ta_rio.spk_result.controller.SpkResultController;
 import ta_rio.spk_result.model.SpkResultModel;
 import ta_rio.spk_result.model.SpkResultTableModel;
+import ta_rio.user.dao.UserDao;
 import ta_rio.util.Report;
 
 public class SpkResultView extends JPanel {
@@ -81,6 +82,9 @@ public class SpkResultView extends JPanel {
     }
 
     private void setHeader() {
+        if (!validasi()) {
+            return;
+        }
         lbTitle = new JLabel("Hasil Keputusan");
 
         IconCustom iconPrint = new IconCustom("svg/print.svg", 1f, null);
@@ -120,6 +124,12 @@ public class SpkResultView extends JPanel {
     public void refreshUI() {
         repaint();
         revalidate();
+    }
+
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
     }
 
     private void setContent() {

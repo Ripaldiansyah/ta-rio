@@ -124,7 +124,6 @@ public class UserDao implements UserService {
             }
         } catch (Exception e) {
             bbb = true;
-            e.printStackTrace();
         }
         return bbb;
     }

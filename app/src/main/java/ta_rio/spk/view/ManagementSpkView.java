@@ -21,6 +21,7 @@ import ta_rio.spk.model.SpkTableModel;
 import ta_rio.spk_count.view.SPKCountView;
 import ta_rio.spk_result.model.SpkResultModel;
 import ta_rio.spk_result.view.SpkResultView;
+import ta_rio.user.dao.UserDao;
 import ta_rio.util.Report;
 
 public class ManagementSpkView extends JPanel {
@@ -96,6 +97,9 @@ public class ManagementSpkView extends JPanel {
         IconCustom iconDelete = new IconCustom("svg/delete.svg", 1f, null);
         IconCustom iconInfo = new IconCustom("svg/info.svg", 1f, null);
 
+        if (!validasi()) {
+            return;
+        }
         btnPrint = new ButtonCustom(
                 null,
                 iconPrint.getIcon(),
@@ -191,6 +195,12 @@ public class ManagementSpkView extends JPanel {
         notification.deleteNotification();
         spkTableModel.removeData(indexRow);
         disableButton();
+    }
+
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
     }
 
     private void handleInfo() {
