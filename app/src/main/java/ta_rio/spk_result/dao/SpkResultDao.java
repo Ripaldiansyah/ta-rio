@@ -11,6 +11,7 @@ import ta_rio.spk_result.service.SpkResultService;
 import ta_rio.spk_result.view.SpkResultView;
 import ta_rio.util.DatabaseConnection;
 import ta_rio.util.UserToken;
+import java.sql.Timestamp;
 
 public class SpkResultDao implements SpkResultService {
 
@@ -24,10 +25,12 @@ public class SpkResultDao implements SpkResultService {
     @Override
     public void saveSpk(SpkResultModel model) {
         PreparedStatement stat = null;
-        String sql = "INSERT INTO spk_history (user_id) VALUES (?)";
+        String sql = "INSERT INTO spk_history (user_id, spk_name, created_at) VALUES (?,?,?)";
         try {
             stat = conn.prepareStatement(sql, new String[] { "id_spk" });
             stat.setString(1, UserToken.userID);
+            stat.setString(2, model.getSpkSaveName());
+            stat.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
             stat.executeUpdate();
 
             ResultSet generatedKeys = stat.getGeneratedKeys();

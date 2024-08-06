@@ -18,12 +18,14 @@ import net.miginfocom.swing.MigLayout;
 import ta_rio.UI.Notification.NotificationCustom;
 import ta_rio.UI.Table.TableCustom;
 import ta_rio.UI.button.ButtonCustom;
+import ta_rio.spk.view.ManagementSpkView;
 import ta_rio.spk_count.controller.SPKCountController;
 import ta_rio.spk_count.model.SPKCountModel;
 import ta_rio.spk_count.model.SPKCountTableModel;
 import ta_rio.spk_count.util.TopsisAlgorithm;
 import ta_rio.spk_result.model.SpkResultModel;
 import ta_rio.spk_result.view.SpkResultView;
+import javax.swing.JOptionPane;
 
 public class SPKCountView extends JPanel {
     private JPanel mainPanel;
@@ -31,16 +33,16 @@ public class SPKCountView extends JPanel {
     private JPanel alternativeTitle;
     private JPanel contentPanel;
     private ButtonCustom btnCount;
+    private ButtonCustom btnBack;
     private JScrollPane scrollPane;
     private JLabel lbTitle;
-    private int indexRow;
-    private int indexColumn;
     private SPKCountTableModel spkCountTableModel = new SPKCountTableModel();
     private SPKCountController controller = new SPKCountController();
     private List<List<Object>> rowData = new ArrayList<>();
     private List<Map<Object, Object>> alternativeListMap = new ArrayList<>();
     private List<Map<Object, Object>> criteriaListMap = new ArrayList<>();
     public static SpkResultModel resultModel;
+    private String nameSave;
 
     public SPKCountView() {
         initComponent();
@@ -101,10 +103,28 @@ public class SPKCountView extends JPanel {
                 null,
                 null,
                 (e) -> {
+                    nameSave = JOptionPane.showInputDialog("Simpan sebagai");
+                    if (nameSave == null) {
+                        JOptionPane.showMessageDialog(null, "Masukan nama save");
+                        return;
+                    }
+                    if (nameSave.trim().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Masukan nama save");
+                        return;
+                    }
                     getDataInput();
+                });
+        btnBack = new ButtonCustom(
+                "Kembali",
+                null,
+                "#f2f2f2",
+                "#000",
+                (e) -> {
+                    changeContent(new ManagementSpkView());
                 });
 
         headerPanel.add(lbTitle, "pushx");
+        headerPanel.add(btnBack, "h 40!, w 100!");
         headerPanel.add(btnCount, "h 40!, w 100!");
 
     }
@@ -112,33 +132,6 @@ public class SPKCountView extends JPanel {
     private void setContent() {
         spkCountTableModel.setData(controller.getData());
         TableCustom countTable = new TableCustom(spkCountTableModel, null);
-        countTable.getTable().addMouseListener(new MouseInputAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                indexRow = countTable.getSelectedRow();
-                indexColumn = countTable.getSelectedColumn();
-            }
-        });
-
-        countTable.getTable().addKeyListener(new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                spkCountTableModel.setValueAt(e, indexColumn, indexRow);
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-
-        });
 
         countTable.getTable().setRowSorter(null);
         alternativeTitle.add(countTable.getheader(), "push,h 40!");
@@ -196,9 +189,10 @@ public class SPKCountView extends JPanel {
             }
             alternativeListMap.add(alternativeMap);
         }
-
+        // TopsisAlgorithm.spkName = nameSave;
         TopsisAlgorithm topsis = new TopsisAlgorithm(alternativeListMap,
-                criteriaListMap);
+                criteriaListMap, nameSave);
+
         changeContent(new SpkResultView(resultModel));
     }
 

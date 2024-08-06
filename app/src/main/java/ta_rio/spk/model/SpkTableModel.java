@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import ta_rio.criteria.controller.CriteriaController;
-import ta_rio.criteria.service.CriteriaTableService;
 import ta_rio.spk.controller.SpkController;
 
 public class SpkTableModel extends AbstractTableModel {
@@ -27,7 +25,7 @@ public class SpkTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return spkList.get(rowIndex).getSpkId();
+                return spkList.get(rowIndex).getSpkName();
             case 1:
                 return spkList.get(rowIndex).getCreatedAt();
             default:

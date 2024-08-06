@@ -4,13 +4,22 @@ public class SpkModel {
     String spkId;
     String createdAt;
     String userId;
+    String SpkName;
 
     private final String[] columnHeader = {
 
-            "ID Keputusan",
+            "Nama SPK",
             "Tanggal Perhitungan"
 
     };
+
+    public String getSpkName() {
+        return SpkName;
+    }
+
+    public void setSpkName(String spkName) {
+        SpkName = spkName;
+    }
 
     public String getSpkId() {
         return spkId;

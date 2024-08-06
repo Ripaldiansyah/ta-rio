@@ -9,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import ta_rio.UI.Icon.IconCustom;
 import ta_rio.UI.Table.TableCustom;
 import ta_rio.UI.button.ButtonCustom;
+import ta_rio.spk.view.ManagementSpkView;
 import ta_rio.spk_result.controller.SpkResultController;
 import ta_rio.spk_result.model.SpkResultModel;
 import ta_rio.spk_result.model.SpkResultTableModel;
@@ -20,6 +21,7 @@ public class SpkResultView extends JPanel {
     private JPanel headerTable;
     private JPanel contentPanel;
     private ButtonCustom btnPrint;
+    private ButtonCustom btnBack;
     private JScrollPane scrollPane;
     private JLabel lbTitle;
     private SpkResultTableModel resultTableModel = new SpkResultTableModel();
@@ -91,12 +93,33 @@ public class SpkResultView extends JPanel {
                     Report report = new Report();
                     report.ReportSPKResult(idSPK);
                 });
+        btnBack = new ButtonCustom(
+                "Kembali",
+                null,
+                "#f2f2f2",
+                "#000",
+                (e) -> {
+                    changeContent(new ManagementSpkView());
+                });
 
         btnPrint.setToolTipText("Cetak Dokumen");
 
         headerPanel.add(lbTitle, "pushx");
+        headerPanel.add(btnBack, "h 40!, w 100!");
         headerPanel.add(btnPrint);
 
+    }
+
+    public void changeContent(JPanel panel) {
+        removeAll();
+        setLayout(new MigLayout("insets 0, fill", "fill,center", "top"));
+        add(panel);
+        refreshUI();
+    }
+
+    public void refreshUI() {
+        repaint();
+        revalidate();
     }
 
     private void setContent() {

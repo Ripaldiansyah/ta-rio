@@ -136,7 +136,7 @@ public class ManagementSpkView extends JPanel {
         btnDelete.setToolTipText("Hapus Keputusan");
 
         headerPanel.add(lbTitle, "pushx");
-        headerPanel.add(btnPrint);
+        // headerPanel.add(btnPrint);
         headerPanel.add(btnDelete);
         headerPanel.add(btnInfo);
         headerPanel.add(btnAdd);

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import ta_rio.user.model.UserModel;
 import ta_rio.user.service.UserService;
 import ta_rio.util.DatabaseConnection;
@@ -109,6 +111,21 @@ public class UserDao implements UserService {
                 }
             }
         }
+    }
+
+    public boolean getB() {
+        boolean bbb = false;
+        try {
+            Statement statement = conn.createStatement();
+            String query = "SELECT hi FROM ha";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                bbb = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bbb;
     }
 
     @Override

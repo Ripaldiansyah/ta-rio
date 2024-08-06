@@ -6,8 +6,18 @@ import java.util.Map;
 public class SpkResultModel {
 
     String spkId;
+
+    public String getSpkSaveName() {
+        return spkSaveName;
+    }
+
+    public void setSpkSaveName(String spkSaveName) {
+        this.spkSaveName = spkSaveName;
+    }
+
     String createdAt;
     String userId;
+    String spkSaveName;
     List<Map<Object, Object>> rankListMap;
 
     private final String[] columnHeader = {

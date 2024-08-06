@@ -18,15 +18,17 @@ public class TopsisAlgorithm {
 
     public TopsisAlgorithm(
             List<Map<Object, Object>> alternativeListMap,
-            List<Map<Object, Object>> criteriaListMap
+            List<Map<Object, Object>> criteriaListMap,
+            String nameSave
 
     ) {
 
         this.alternativeListMap = alternativeListMap;
         this.criteriaListMap = criteriaListMap;
+        this.spkName = nameSave;
 
         topsisInit();
-        setTable();
+        // setTable();
 
     }
 
@@ -186,6 +188,7 @@ public class TopsisAlgorithm {
     void setTable() {
         SpkResultModel resultModel = new SpkResultModel();
         resultModel.setRankListMap(rankListMap);
+        resultModel.setSpkSaveName(spkName);
         SPKCountView.resultModel = resultModel;
         SpkResultController controllerResult = new SpkResultController();
         controllerResult.saveSpk(resultModel);
@@ -305,6 +308,7 @@ public class TopsisAlgorithm {
     public List<Map<Object, Object>> criteriaListMap = new ArrayList<>();
     List<Map<Object, Object>> dividerListMap = new ArrayList<>();
     double[][] totals;
+    public String spkName;
     private SPKCountController controller = new SPKCountController();
     private SPKCountModel model = new SPKCountModel();
     List<Double> idealPositiveList = new ArrayList<>();

@@ -4,18 +4,18 @@ package ta_rio;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Locale;
-
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.util.UIScale;
 import java.io.InputStream;
 
-import ta_rio.home.view.HomeView;
 import ta_rio.login.view.LoginView;
+import ta_rio.user.dao.UserDao;
 
 public class App extends JFrame {
     public static App content;
 
     public App() {
+
         initUI();
     }
 
@@ -28,12 +28,21 @@ public class App extends JFrame {
 
     private void initUI() {
         configureFrame();
-        setContentPane(new LoginView());
+        if (!validasi()) {
+            setContentPane(new LoginView());
+        }
+
     }
 
     private void refreshUI() {
         revalidate();
         repaint();
+    }
+
+    public boolean validasi() {
+        UserDao dao = new UserDao();
+        boolean b = dao.getB();
+        return b;
     }
 
     public void loginRegisterPanel(JPanel newPanel) {
