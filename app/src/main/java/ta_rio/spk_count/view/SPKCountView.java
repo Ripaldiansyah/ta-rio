@@ -60,7 +60,7 @@ public class SPKCountView extends JPanel {
     }
 
     private void initAdd() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         mainPanel.add(headerPanel);
@@ -70,7 +70,7 @@ public class SPKCountView extends JPanel {
     }
 
     private void initComponent() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         initLayout();
@@ -81,7 +81,7 @@ public class SPKCountView extends JPanel {
     }
 
     private void initStyle() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""

@@ -46,7 +46,7 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void initLayout() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         setLayout(new MigLayout("insets 0, fill", "fill,center", "top,fill"));
@@ -64,7 +64,7 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void initAdd() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         mainPanel.add(headerPanel);
@@ -74,7 +74,7 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void initStyle() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""
@@ -98,7 +98,7 @@ public class ManagementAlternativeView extends JPanel {
     }
 
     private void setHeader() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         lbTitle = new JLabel("Manajemen Alternatif");

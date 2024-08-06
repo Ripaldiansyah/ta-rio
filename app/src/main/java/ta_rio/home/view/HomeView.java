@@ -50,7 +50,7 @@ public class HomeView extends JPanel {
     }
 
     private void initLayout() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         setLayout(new MigLayout("insets 0, fill", "fill,center", "top,fill"));
@@ -62,9 +62,6 @@ public class HomeView extends JPanel {
     }
 
     private void initStyle() {
-        if (!validasi()) {
-            return;
-        }
         mainPanel.putClientProperty(FlatClientProperties.STYLE, ""
                 + "background:#000;"
                 + "arc:15");
@@ -81,7 +78,7 @@ public class HomeView extends JPanel {
     }
 
     private void initAdd() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         mainPanel.add(headerPanel);
@@ -97,6 +94,7 @@ public class HomeView extends JPanel {
     }
 
     private void setHeader() {
+
         ImageIcon originalIcon = new ImageIcon(this.getClass().getResource("/Images/logo.png"));
         Image originalImage = originalIcon.getImage();
         int newWidth = 100;
@@ -104,7 +102,9 @@ public class HomeView extends JPanel {
         Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
         ImageIcon logo = new ImageIcon(resizedImage);
-
+        if (validasi()) {
+            return;
+        }
         String[] title = {
                 "Beranda",
                 "Pengguna",

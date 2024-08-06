@@ -97,7 +97,7 @@ public class ManagementSpkView extends JPanel {
         IconCustom iconDelete = new IconCustom("svg/delete.svg", 1f, null);
         IconCustom iconInfo = new IconCustom("svg/info.svg", 1f, null);
 
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         btnPrint = new ButtonCustom(

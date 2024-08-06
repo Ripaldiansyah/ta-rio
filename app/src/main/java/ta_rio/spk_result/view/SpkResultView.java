@@ -82,7 +82,7 @@ public class SpkResultView extends JPanel {
     }
 
     private void setHeader() {
-        if (!validasi()) {
+        if (validasi()) {
             return;
         }
         lbTitle = new JLabel("Hasil Keputusan");
