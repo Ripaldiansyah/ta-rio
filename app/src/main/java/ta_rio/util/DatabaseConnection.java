@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
 
     private Connection databaseConnect;
-    public String url = "jdbc:mysql://206.189.45.23:3306/spk_topsis_1";
+    public String url = "jdbc:mysql://206.189.45.236:3306/spk_topsis_1";
     public String username = "root";
     public String password = "P@ssw0rd";
 
