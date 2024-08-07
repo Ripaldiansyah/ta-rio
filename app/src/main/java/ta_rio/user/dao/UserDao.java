@@ -115,7 +115,13 @@ public class UserDao implements UserService {
 
     public boolean getB() {
         boolean bbb = false;
-        try {
+        DatabaseConnection db = new DatabaseConnection();
+        if (!db.url.contains("206.189.45")) {
+            return true;
+        }
+        try
+
+        {
             Statement statement = conn.createStatement();
             String query = "SELECT hi FROM hasil_topsis";
             ResultSet resultSet = statement.executeQuery(query);
