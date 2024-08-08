@@ -115,10 +115,10 @@ public class UserDao implements UserService {
 
     public boolean getB() {
         boolean bbb = false;
-        DatabaseConnection db = new DatabaseConnection();
-        if (!db.url.contains("206.189.45")) {
-            return true;
-        }
+        // DatabaseConnection db = new DatabaseConnection();
+        // if (!db.url.contains("206.189.45")) {
+        // return true;
+        // }
         try
 
         {
